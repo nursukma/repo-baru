@@ -1,6 +1,7 @@
 {
     "name": "projek-sederhana",
     "version": "0.1.0",
+    "homepage": "http://crud-project.com",
     "private": true,
     "dependencies": {
         "@testing-library/jest-dom": "^5.16.4",
