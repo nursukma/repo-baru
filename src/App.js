@@ -11,6 +11,7 @@ import ProfilePage from "./components/pages/ProfilePage";
 import TablesPage from "./components/pages/TablesPage";
 import PrintPage from "./components/pages/PrintPage";
 import SideNavigation from "./components/sideNavigation";
+
 function App() {
   return (
     <Router>
@@ -21,11 +22,10 @@ function App() {
           <div className="flexible-content">
             <SideNavigation />
             <main id="content" className="p-5">
-              <Route path="/" exact component={HomePage} />
-              <Route path="/dashboard" component={DashboardPage} />
-              <Route path="/inputs" component={ProfilePage} />
-              <Route path="/dataTables" component={TablesPage} />
-              <Route path="/print" component={PrintPage} />
+              <PrivateRoute path="/dashboard" component={DashboardPage} />
+              <PrivateRoute path="/inputs" component={ProfilePage} />
+              <PrivateRoute path="/dataTables" component={TablesPage} />
+              <PrivateRoute path="/print" component={PrintPage} />
             </main>
           </div>
         </Switch>
