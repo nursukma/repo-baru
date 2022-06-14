@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/img-1.jpg";
+import logo from "../assets/model.jpg";
 import { MDBListGroup, MDBListGroupItem, MDBIcon, MDBNavLink } from "mdbreact";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../services/AuthContext";
