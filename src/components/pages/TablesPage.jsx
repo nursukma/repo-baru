@@ -27,6 +27,7 @@ class TablesPage extends Component {
         pasienIbu: isi.pasienIbu,
         pasienSuami: isi.pasienSuami,
         alamat: isi.alamat,
+        rekomendasi: isi.rekomendasi,
       });
     });
     this.setState({
@@ -52,6 +53,12 @@ class TablesPage extends Component {
         {
           label: "Alamat",
           field: "alamat",
+          sort: "asc",
+          width: 280,
+        },
+        {
+          label: "Prediksi",
+          field: "rekomendasi",
           sort: "asc",
           width: 280,
         },

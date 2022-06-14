@@ -61,6 +61,7 @@ class ProfilePage extends Component {
       q26: "",
       pasienIbu: "",
       pasienSuami: "",
+      rekomendasi: "",
       alamat: "",
       submitted: false,
       iniRek: [
@@ -182,6 +183,14 @@ class ProfilePage extends Component {
   }
 
   addEvent = () => {
+    let data1 = ((this.state.q6 * 0.000465)+(this.state.q8 * 0.001395)+(this.state.q15*0.243143)+(this.state.q18 * 0.242678)+(this.state.q21 * 0.244538)+(this.state.q22 * 0.003254)+(this.state.q23 * 0.245467)+(this.state.q24 * 0.019061));
+    let hasil = "";
+    if(data1 <= 2.8){
+      hasil = "Risiko Stunting";
+    }else{
+      hasil = "Normal";
+    }
+
     let data = {
       q1: this.state.q1,
       q2: this.state.q2,
@@ -212,6 +221,7 @@ class ProfilePage extends Component {
       pasienIbu: this.state.pasienIbu,
       pasienSuami: this.state.pasienSuami,
       alamat: this.state.alamat,
+      rekomendasi: hasil,
     };
     dbService
       .create(data)
@@ -264,8 +274,24 @@ class ProfilePage extends Component {
     // return this.changeHandler() 
   };
 
+  tampilHasil = () => {
+    let data = ((this.state.q6 * 0.000465)+(this.state.q8 * 0.001395)+(this.state.q15*0.243143)+(this.state.q18 * 0.242678)+(this.state.q21 * 0.244538)+(this.state.q22 * 0.003254)+(this.state.q23 * 0.245467)+(this.state.q24 * 0.019061));
+    let hasil = "";
+    if(data <= 2.8){
+      hasil = "Risiko Stunting";
+    }else{
+      hasil = "Normal";
+    }
+    this.setState({
+      rekomendasi: hasil
+    })
+    return this.state.rekomendasi;
+  }
+
   tambahData = (event) => {
     event.preventDefault();
+    this.tampilHasil();
+    // console.log(this.state.rekomendasi)
     this.addEvent();
     this.tampilRekomendasi();
     // this.bersihkan();
@@ -377,160 +403,7 @@ class ProfilePage extends Component {
     });
   };
 
-  // bersihkan = () => {
-  //   this.setState = {
-  //     hiddengem: false,
-  //     activeItemPills: "1",
-  //     modal: false,
-
-  //     q1: "",
-  //     q2: "",
-  //     q3: "",
-  //     q4: "",
-  //     q5: "",
-  //     q6: "",
-  //     q7: "",
-  //     q8: "",
-  //     q9: "",
-  //     q10: "",
-  //     q11: "",
-  //     q12: "",
-  //     q13: "",
-  //     q14: "",
-  //     q15: "",
-  //     q16: "",
-  //     q17: "",
-  //     q18: "",
-  //     q19: "",
-  //     q20: "",
-  //     q21: "",
-  //     q22: "",
-  //     q23: "",
-  //     q24: "",
-  //     q25: "",
-  //     q26: "",
-  //     pasienIbu: "",
-  //     pasienSuami: "",
-  //     alamat: "",
-  //     submitted: false,
-  //     iniRek: [
-  //       {
-  //         id: 1,
-  //         rekomendasi:
-  //           "Disarankan untuk lebih meningkatkan dan mengkonsumsi Protein Hewani (Ayam, Ikan, Daging, Telur dll)",
-  //       },
-  //       {
-  //         id: 12,
-  //         rekomendasi:
-  //           "Disarankan untuk lebih meningkatkan mengkonsumsi Protein Hewani (Ayam, Ikan, Daging, Telur dll)",
-  //       },
-  //       {
-  //         id: 13,
-  //         rekomendasi:
-  //           "Disarankan untuk meningkatkan dan mengkonsumsi Protein Hewani (Ayam, Ikan, Daging, Telur dll)",
-  //       },
-  //       {
-  //         id: 14,
-  //         rekomendasi:
-  //           "Disarankan untuk mempertahankan mengkonsumsi Protein Hewani (Ayam, Ikan, Daging, Telur dll)",
-  //       },
-  //       {
-  //         id: 2,
-  //         rekomendasi:
-  //           "Disarankan untuk lebih meningkatkan dan mengonsumsi makanan dengan kandungan zat besi tinggi, seperti biji-bijian, daging merah, kacang-kacangan, sayuran hijau, dan hati",
-  //       },
-  //       {
-  //         id: 22,
-  //         rekomendasi:
-  //           "Disarankan untuk lebih meningkatkan mengonsumsi makanan dengan kandungan zat besi tinggi, seperti biji-bijian, daging merah, kacang-kacangan, sayuran hijau, dan hati",
-  //       },
-  //       {
-  //         id: 23,
-  //         rekomendasi:
-  //           "Disarankan untuk meningkatkan mengonsumsi makanan dengan kandungan zat besi tinggi, seperti biji-bijian, daging merah, kacang-kacangan, sayuran hijau, dan hati",
-  //       },
-  //       {
-  //         id: 24,
-  //         rekomendasi:
-  //           "Disarankan untuk mempertahankan mengonsumsi makanan dengan kandungan zat besi tinggi, seperti biji-bijian, daging merah, kacang-kacangan, sayuran hijau, dan hati",
-  //       },
-  //       {
-  //         id: 3,
-  //         rekomendasi:
-  //           "Disarankan untuk mempertahankan Indeks Massa Tubuh (IMT) Normal",
-  //       },
-  //       {
-  //         id: 32,
-  //         rekomendasi:
-  //           "Anda Overweight / Underweight. Disarankan untuk Indeks Massa Tubuh (IMT) Normal",
-  //       },
-  //       {
-  //         id: 4,
-  //         rekomendasi: "Disarankan untuk mempertahankan kadar (HB) Normal",
-  //       },
-  //       {
-  //         id: 42,
-  //         rekomendasi:
-  //           "Anda Over HB / Under HB. Disarankan untuk mempertahankan kadar (HB) Normal",
-  //       },
-  //       {
-  //         id: 5,
-  //         rekomendasi:
-  //           "Disarankan untuk lebih meningkatkan dan mengonsumsi susu",
-  //       },
-  //       {
-  //         id: 52,
-  //         rekomendasi: "Disarankan untuk lebih meningkatkan mengonsumsi susu",
-  //       },
-  //       {
-  //         id: 53,
-  //         rekomendasi: "Disarankan untuk meningkatkan mengonsumsi susu",
-  //       },
-  //       {
-  //         id: 54,
-  //         rekomendasi: "Disarankan untuk mempertahankan dan mengonsumsi susu",
-  //       },
-  //       {
-  //         id: 6,
-  //         rekomendasi:
-  //           "Disarankan untuk lebih meningkatkan dan mengonsumsi Protein Nabati (Tahu, Tempe dll)",
-  //       },
-  //       {
-  //         id: 62,
-  //         rekomendasi:
-  //           "Disarankan untuk lebih meningkatkan mengonsumsi Protein Nabati (Tahu, Tempe dll)",
-  //       },
-  //       {
-  //         id: 63,
-  //         rekomendasi:
-  //           "Disarankan untuk meningkatkan mengonsumsi Protein Nabati (Tahu, Tempe dll)",
-  //       },
-  //       {
-  //         id: 64,
-  //         rekomendasi:
-  //           "Disarankan untuk mempertahankan mengonsumsi Protein Nabati (Tahu, Tempe dll)",
-  //       },
-  //       {
-  //         id: 7,
-  //         rekomendasi: "Disarankan Suami mempertahankan untuk tidak merokok",
-  //       },
-  //       {
-  //         id: 72,
-  //         rekomendasi: "Disarankan Suami untuk tidak merokok",
-  //       },
-  //       {
-  //         id: 8,
-  //         rekomendasi: "Tidak ada riwayat penyakit pernafasan dari Suami",
-  //       },
-  //       {
-  //         id: 82,
-  //         rekomendasi: "Ada riwayat penyakit pernafasan dari Suami",
-  //       },
-  //     ],
-  //     hasilRek: [],
-  //   };
-  // };
-
+  
   cobaPrint = () => {
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
@@ -1136,6 +1009,7 @@ class ProfilePage extends Component {
                           pasienIbu={this.state.pasienIbu}
                           alamat={this.state.alamat}
                           hasilRek={this.state.hasilRek}
+                          rekomendasi = {this.state.rekomendasi}
                           ref={(el) => (this.componentRef = el)}
                         />
                       </>

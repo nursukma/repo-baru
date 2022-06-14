@@ -7,25 +7,25 @@ const BreadcrumSection = () => {
   return (
     <React.Fragment>
         <MDBRow className="justify-content-center">
-        <MDBCol sm="12" md="6" lg="3" className="mb-5">
+        <MDBCol sm="12" md="6" lg="12" className="mb-5">
             <MDBCard>
-                <MDBCardImage className="img-fluid" src={src1} />
+                {/* <MDBCardImage className="img-fluid" src={src1} /> */}
                 <MDBCardBody>
-                    <MDBCardTitle className="text-center mb-2 font-bold">Alice Mayer</MDBCardTitle>
-                    <MDBCardTitle sub className="text-center indigo-text mb-2 font-bold">Photographer</MDBCardTitle>
-                    <MDBCardText>
+                    <MDBCardTitle className="text-center mb-2 font-bold">Selamat Datang</MDBCardTitle>
+                    <MDBCardTitle sub className="text-center indigo-text mb-2 font-bold">Sistem Informasi Prediksi Kejadian BBLR dan Stunting</MDBCardTitle>
+                    {/* <MDBCardText>
                         <strong className="mb-2">About:</strong>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione perferendis quod animi dignissimos consectetur quibusdam numquam laboriosam, minus, provident...
-                    </MDBCardText>
-                    <div className="row justify-content-end pr-1">
+                    </MDBCardText> */}
+                    {/* <div className="row justify-content-end pr-1">
                         <MDBBtn size="sm" outline color="primary">More...</MDBBtn>
-                    </div>
+                    </div> */}
                 </MDBCardBody>
             </MDBCard>
         </MDBCol>
         <MDBCol md="6" lg="9">
         <section className="text-center pb-3">
-          <MDBRow className="d-flex justify-content-center">
+          {/* <MDBRow className="d-flex justify-content-center">
             <MDBCol lg="6" xl="5" className="mb-3">
               <MDBCard className="d-flex mb-5">
                 <MDBView>
@@ -116,7 +116,7 @@ const BreadcrumSection = () => {
                 </MDBCardFooter>
               </MDBCard>
             </MDBCol>
-          </MDBRow>
+          </MDBRow> */}
         </section>
       </MDBCol>
     </MDBRow>
