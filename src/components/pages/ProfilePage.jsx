@@ -183,12 +183,21 @@ class ProfilePage extends Component {
   }
 
   addEvent = () => {
-    let data1 = ((this.state.q6 * 0.000465)+(this.state.q8 * 0.001395)+(this.state.q15*0.243143)+(this.state.q18 * 0.242678)+(this.state.q21 * 0.244538)+(this.state.q22 * 0.003254)+(this.state.q23 * 0.245467)+(this.state.q24 * 0.019061));
+    let data1 =
+      this.state.q6 * 0.000465 +
+      this.state.q8 * 0.001395 +
+      this.state.q15 * 0.243143 +
+      this.state.q18 * 0.242678 +
+      this.state.q21 * 0.244538 +
+      this.state.q22 * 0.003254 +
+      this.state.q23 * 0.245467 +
+      this.state.q24 * 0.019061;
     let hasil = "";
-    if(data1 <= 2.8){
-      hasil = "Risiko Stunting";
-    }else{
+    if (data1 >= 1.686611) {
       hasil = "Normal";
+    } else {
+      let persen = (1.686611 - data1)/1.686611*100;
+      hasil = "Risiko Stunting "+persen.toFixed(2)+"%";
     }
 
     let data = {
@@ -245,9 +254,9 @@ class ProfilePage extends Component {
 
   handleInputChange = (inputName) => (value) => {
     const nextValue = value;
-      this.setState({
-        [inputName]: nextValue,
-      });
+    this.setState({
+      [inputName]: nextValue,
+    });
   };
 
   toggle = () => {
@@ -271,22 +280,31 @@ class ProfilePage extends Component {
     //   this.activeItemPills += 1;
     //   this.togglePills(this.activeItemPills);
     // }
-    // return this.changeHandler() 
+    // return this.changeHandler()
   };
 
   tampilHasil = () => {
-    let data = ((this.state.q6 * 0.000465)+(this.state.q8 * 0.001395)+(this.state.q15*0.243143)+(this.state.q18 * 0.242678)+(this.state.q21 * 0.244538)+(this.state.q22 * 0.003254)+(this.state.q23 * 0.245467)+(this.state.q24 * 0.019061));
+    let data =
+      this.state.q6 * 0.000465 +
+      this.state.q8 * 0.001395 +
+      this.state.q15 * 0.243143 +
+      this.state.q18 * 0.242678 +
+      this.state.q21 * 0.244538 +
+      this.state.q22 * 0.003254 +
+      this.state.q23 * 0.245467 +
+      this.state.q24 * 0.019061;
     let hasil = "";
-    if(data <= 2.8){
-      hasil = "Risiko Stunting";
-    }else{
+    if (data >= 1.686611) {
       hasil = "Normal";
+    } else {
+      let persen = (1.686611 - data)/1.686611*100;
+      hasil = "Risiko Stunting "+persen.toFixed(2)+"%";
     }
     this.setState({
-      rekomendasi: hasil
-    })
+      rekomendasi: hasil,
+    });
     return this.state.rekomendasi;
-  }
+  };
 
   tambahData = (event) => {
     event.preventDefault();
@@ -301,99 +319,99 @@ class ProfilePage extends Component {
     let ANCOK = [];
     this.state.iniRek.forEach((data) => {
       if (data.id === 8) {
-        if (this.state.q6 === "1") {
+        if (this.state.q6 === "0") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 82) {
-        if (this.state.q6 === "2") {
+        if (this.state.q6 === "1") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 7) {
-        if (this.state.q7 === "1") {
+        if (this.state.q7 === "0") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 72) {
-        if (this.state.q7 === "2") {
+        if (this.state.q7 === "1") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 3) {
-        if (this.state.q15 === "1") {
+        if (this.state.q15 === "0") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 32) {
-        if (this.state.q15 === "2") {
+        if (this.state.q15 === "1") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 4) {
-        if (this.state.q18 === "1") {
+        if (this.state.q18 === "0") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 42) {
-        if (this.state.q18 === "2") {
+        if (this.state.q18 === "1") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 2) {
-        if (this.state.q21 === "2") {
+        if (this.state.q21 === "1") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 22) {
-        if (this.state.q21 === "3") {
+        if (this.state.q21 === "2") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 23) {
-        if (this.state.q21 === "4") {
+        if (this.state.q21 === "3") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 24) {
-        if (this.state.q21 === "5") {
+        if (this.state.q21 === "4") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 6) {
-        if (this.state.q22 === "2") {
+        if (this.state.q22 === "1") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 62) {
-        if (this.state.q22 === "3") {
+        if (this.state.q22 === "2") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 63) {
-        if (this.state.q22 === "4") {
+        if (this.state.q22 === "3") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 64) {
-        if (this.state.q22 === "5") {
+        if (this.state.q22 === "4") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 1) {
-        if (this.state.q23 === "2") {
+        if (this.state.q23 === "1") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 12) {
-        if (this.state.q23 === "3") {
+        if (this.state.q23 === "2") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 13) {
-        if (this.state.q23 === "4") {
+        if (this.state.q23 === "3") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 14) {
-        if (this.state.q23 === "5") {
+        if (this.state.q23 === "4") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 5) {
-        if (this.state.q24 === "2") {
+        if (this.state.q24 === "1") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 52) {
-        if (this.state.q24 === "3") {
+        if (this.state.q24 === "2") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 53) {
-        if (this.state.q24 === "4") {
+        if (this.state.q24 === "3") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       } else if (data.id === 54) {
-        if (this.state.q24 === "5") {
+        if (this.state.q24 === "4") {
           ANCOK.push({ rekomendasi: data.rekomendasi });
         }
       }
@@ -403,7 +421,6 @@ class ProfilePage extends Component {
     });
   };
 
-  
   cobaPrint = () => {
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
@@ -412,12 +429,12 @@ class ProfilePage extends Component {
     return handlePrint;
   };
 
-  cobaHandle = () =>{
+  cobaHandle = () => {
     this.setState(
-      this.activeItemPills += 1,
-      this.togglePills(this.activeItemPills),
-    )
-  }
+      (this.activeItemPills += 1),
+      this.togglePills(this.activeItemPills)
+    );
+  };
 
   render() {
     const { activeItemPills } = this.state;
@@ -485,7 +502,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q1"
                               getValue={this.handleInputChange("q1")}
                               required
@@ -503,7 +520,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q2"
                               getValue={this.handleInputChange("q2")}
                               required
@@ -521,7 +538,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q3"
                               getValue={this.handleInputChange("q3")}
                               required
@@ -539,7 +556,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q4"
                               getValue={this.handleInputChange("q4")}
                               required
@@ -557,7 +574,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q5"
                               getValue={this.handleInputChange("q5")}
                               required
@@ -566,8 +583,6 @@ class ProfilePage extends Component {
                           </>
                         }
                       />
-                    </MDBTabPane>
-                    <MDBTabPane tabId="2">
                       <MDBInputGroup
                         label="Penyakit pernafasan Suami"
                         material
@@ -577,7 +592,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q6"
                               getValue={this.handleInputChange("q6")}
                               required
@@ -596,7 +611,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q7"
                               getValue={this.handleInputChange("q7")}
                               required
@@ -614,7 +629,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q8"
                               getValue={this.handleInputChange("q8")}
                               required
@@ -632,7 +647,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q9"
                               getValue={this.handleInputChange("q9")}
                               required
@@ -650,7 +665,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q10"
                               getValue={this.handleInputChange("q10")}
                               required
@@ -668,7 +683,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q11"
                               getValue={this.handleInputChange("q11")}
                               required
@@ -686,7 +701,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q12"
                               getValue={this.handleInputChange("q12")}
                               required
@@ -696,7 +711,7 @@ class ProfilePage extends Component {
                         }
                       />
                     </MDBTabPane>
-                    <MDBTabPane tabId="3">
+                    <MDBTabPane tabId="2">
                       <MDBInputGroup
                         label="Frekuensi Periksa selama hamil"
                         material
@@ -706,7 +721,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-4"
+                              hint="0-1"
                               name="q13"
                               getValue={this.handleInputChange("q13")}
                               required
@@ -724,7 +739,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-4"
+                              hint="0-1"
                               name="q14"
                               getValue={this.handleInputChange("q14")}
                               required
@@ -742,7 +757,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q15"
                               getValue={this.handleInputChange("q15")}
                               required
@@ -778,7 +793,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q17"
                               getValue={this.handleInputChange("q17")}
                               required
@@ -796,7 +811,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q18"
                               getValue={this.handleInputChange("q18")}
                               required
@@ -814,7 +829,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q19"
                               getValue={this.handleInputChange("q19")}
                               required
@@ -823,8 +838,6 @@ class ProfilePage extends Component {
                           </>
                         }
                       />
-                    </MDBTabPane>
-                    <MDBTabPane tabId="4">
                       <MDBInputGroup
                         label="Usia Lahir"
                         material
@@ -834,7 +847,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-2"
+                              hint="0-1"
                               name="q20"
                               getValue={this.handleInputChange("q20")}
                               required
@@ -852,7 +865,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-5"
+                              hint="1-4"
                               name="q21"
                               getValue={this.handleInputChange("q21")}
                               required
@@ -870,7 +883,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-5"
+                              hint="1-4"
                               name="q22"
                               getValue={this.handleInputChange("q22")}
                               required
@@ -888,7 +901,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-5"
+                              hint="1-4"
                               name="q23"
                               getValue={this.handleInputChange("q23")}
                               required
@@ -906,7 +919,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-5"
+                              hint="1-4"
                               name="q24"
                               getValue={this.handleInputChange("q24")}
                               required
@@ -942,7 +955,7 @@ class ProfilePage extends Component {
                             <MDBInput
                               noTag
                               type="number"
-                              hint="1-5"
+                              hint="1-4"
                               name="q26"
                               getValue={this.handleInputChange("q26")}
                               required
@@ -974,26 +987,6 @@ class ProfilePage extends Component {
                         2
                       </MDBLink>
                     </MDBNavItem>
-                    <MDBNavItem>
-                      <MDBLink
-                        to="#"
-                        active={activeItemPills === "3"}
-                        onClick={this.togglePills("3")}
-                        link
-                      >
-                        3
-                      </MDBLink>
-                    </MDBNavItem>
-                    <MDBNavItem>
-                      <MDBLink
-                        to="#"
-                        active={activeItemPills === "4"}
-                        onClick={this.togglePills("4")}
-                        link
-                      >
-                        4
-                      </MDBLink>
-                    </MDBNavItem>
                   </MDBNav>
                   <MDBBtn color="primary" type="submit">
                     Submit
@@ -1009,7 +1002,7 @@ class ProfilePage extends Component {
                           pasienIbu={this.state.pasienIbu}
                           alamat={this.state.alamat}
                           hasilRek={this.state.hasilRek}
-                          rekomendasi = {this.state.rekomendasi}
+                          rekomendasi={this.state.rekomendasi}
                           ref={(el) => (this.componentRef = el)}
                         />
                       </>
